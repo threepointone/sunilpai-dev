@@ -116,8 +116,8 @@ import { GoogleAnalytics } from "astro-google-analytics";
 ---
 
 <head>
-	<!-- Replace id with your own Google Analytics ID -->
-	<GoogleAnalytics id="G-XXXXXXXXXX" />
+  <!-- Replace id with your own Google Analytics ID -->
+  <GoogleAnalytics id="G-XXXXXXXXXX" />
 </head>
 ```
 

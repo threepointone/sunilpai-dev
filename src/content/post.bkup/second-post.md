@@ -10,6 +10,6 @@ tags: ["example", "blog"]
 ```js
 // Example JavaScript
 function returnSeven() {
-	return 7;
+  return 7;
 }
 ```
