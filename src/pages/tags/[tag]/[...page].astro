@@ -19,6 +19,7 @@ export const getStaticPaths = (async ({ paginate }) => {
       pageSize: 10,
     });
   });
+  // @ts-expect-error - Astro doesn't know that `paginate` satisfies GetStaticPaths;
 }) satisfies GetStaticPaths;
 
 interface Props {
