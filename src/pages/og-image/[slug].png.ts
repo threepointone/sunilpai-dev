@@ -58,7 +58,7 @@ const markup = (title: string, pubDate: string) =>
     </div>
   </div>`;
 
-export async function get({ params: { slug } }: APIContext) {
+export async function GET({ params: { slug } }: APIContext) {
   const post = await getEntryBySlug("post", slug!);
   const title = post?.data.title ?? siteConfig.title;
   const postDate = getFormattedDate(post?.data.publishDate ?? Date.now(), {
@@ -67,10 +67,12 @@ export async function get({ params: { slug } }: APIContext) {
   });
   const svg = await satori(markup(title, postDate), ogOptions);
   const png = new Resvg(svg).render().asPng();
-  return {
-    body: png,
-    encoding: "binary",
-  };
+  return new Response(png, {
+    headers: {
+      "Content-Type": "image/png",
+      "Cache-Control": "public, max-age=3600, immutable",
+    },
+  });
 }
 
 export const getStaticPaths = (async () => {

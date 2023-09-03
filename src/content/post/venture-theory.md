@@ -7,7 +7,7 @@ draft: true
 
 _(This isn't a partiicularly unique theory; tbh I'm just cribbing from [Andreas](https://klinger.io/posts/how-i-make-investment-decisions), but it's still my take, and I think I'm right.)_
 
-Hello, tech founder. You're probably here because you're thinking about raising a seed/pre-seed round from Venture Capitalists. I'm going to tell you how I think about the venture capital ladder, and how I think you should think about it too.
+Hello, tech founder. You're probably thinking about raising a seed/pre-seed round from Venture Capitalists. This is my theory for how to do it.
 
 There are 3 Things you need to have: Insight, Credentials, and Execution.
 
