@@ -7,7 +7,7 @@
     "start": "astro dev",
     "sync": "astro sync",
     "check": "astro check",
-    "build": "astro build",
+    "build": "echo node version && node -v && astro build",
     "postbuild": "pagefind --source dist",
     "preview": "astro preview",
     "format": "prettier -w --cache ."
