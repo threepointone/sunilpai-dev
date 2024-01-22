@@ -8,7 +8,7 @@
     "sync": "astro sync",
     "check": "astro check",
     "build": "echo node version && node -v && astro build",
-    "postbuild": "pagefind --source dist",
+    "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "format": "prettier -w --cache ."
   },
@@ -51,6 +51,6 @@
     "astro": "4.2.1",
     "satori": "0.10.11",
     "satori-html": "^0.3.2",
-    "sharp": "^0.33.2"
+    "sharp": "0.32.6"
   }
 }
