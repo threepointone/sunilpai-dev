@@ -34,3 +34,11 @@
 
 @tailwind components;
 @tailwind utilities;
+
+.prose :where(strong, code) {
+  color: black;
+}
+
+html.dark .prose :where(strong, code) {
+  color: white;
+}
