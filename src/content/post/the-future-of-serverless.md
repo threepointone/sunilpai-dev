@@ -16,7 +16,7 @@ Here's some code. It's how you might write a server that has some state (say, a 
 ```ts
 let counter = 0;
 
-export default function onRequest(request: Request) {
+function onRequest(request: Request) {
   if (request.method === "GET") {
     return new Response(counter);
   } else if (request.method === "POST") {
@@ -39,7 +39,7 @@ These functions aren't even going to run on the same machine. They might not eve
 So the way we "solve" this right now is by using a database/key-value store to persist the state. You'd write the above code like this:
 
 ```ts
-export default function onRequest(request: Request) {
+function onRequest(request: Request) {
   if (request.method === "GET") {
     let counter = await getCounterFromDatabase();
     return new Response(counter);
@@ -57,15 +57,14 @@ What if we could have the best of both worlds? What if we could have stateful se
 What if we could write this, and it would just work?
 
 ```ts
-class default class Counter {
+class Counter {
   value = 0;
   onRequest(request: Request) {
-    if(request.method === 'GET') {
-      return new Response(this.value)
-    }
-    else if(request.method === 'POST') {
+    if (request.method === "GET") {
+      return new Response(this.value);
+    } else if (request.method === "POST") {
       this.value++;
-      return new Response(this.value)
+      return new Response(this.value);
     }
   }
 }
