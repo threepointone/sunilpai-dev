@@ -42,3 +42,7 @@
 html.dark .prose :where(strong, code) {
   color: white;
 }
+
+.astro-code code {
+  color: white;
+}
