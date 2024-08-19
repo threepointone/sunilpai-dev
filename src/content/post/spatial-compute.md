@@ -20,16 +20,7 @@ Now, why not push all your data into these computers as well? A few reasons. The
 
 Ok. Typically, when you write a website that relies on dynamic data (say; an e-commerce shop that shows you the latest products at the latest prices), each request you make to the server has to go through a bunch of steps; including but not limited to, fetching user data (and perhaps some personalisation rules), the product's data, it's prices, maybe some discounts, and then rendering the website/html and giving it to the user. Let's sketch it out like so:
 
-```
-                             <---
-                             --->
-         --->                <---
-User              Server              Database
-         <---                --->
-                             <---
-                             --->
-
-```
+![before-splitting](../../assets/spatial-compute/before.png)
 
 Now, consider the sitation where the server is near the user, but the database is far away. (For example, you're in London browsing a tshirt store fronted by Cloudflare, but the database is in Portland) The server has to wait for the database to respond, and then repeat that with a bunch of roundtrips, before it can respond to the user. This is the classic "high latency" problem. It doesn't matter how fast your server is, or how little data you're transferring; because there's this big gap in the middle, the user has to wait.
 
@@ -51,16 +42,7 @@ I propose splitting up the "server" into 3 distinct pieces:
 
 Here's a sketch of what I mean:
 
-```
-                                                  <---
-                                                  --->
-      --->          --->           --->           <---
-User        Eyeball       Session        Fetcher        Database
-      <---          <---           <---           --->
-                                                  <---
-                                                  --->
-
-```
+![after-splitting](../../assets/spatial-compute/after.png)
 
 Let's try writing the code and seeing how it looks:
 
