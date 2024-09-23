@@ -12,7 +12,7 @@ tl;dr -
 - Create a stream that sends this result to the client from a [Cloudflare Worker](https://developers.cloudflare.com/workers) close to a user's location, and continue the stream with the result from the origin server.
 - In your origin server, render your React app with `resumeToPipeableStream()`.
 
-Next.js has a great feature called "Partial Prerendering" that allows you to prerender the external "shell" of your app, and defer rendering other parts until they are requested by the client. (Vercel refers to as "PPR". This is not how acronyms work at all, but vercel sure love their [TLAs](https://en.wikipedia.org/wiki/Three-letter_acronym). Would've been odd to call it "PP" though.) This article shows you how you can achieve this for any existing server rendered React app, and serve it with a Cloudflare Worker for great performance.
+[Next.js has a great feature called "Partial Prerendering"](https://nextjs.org/docs/app/building-your-application/rendering/partial-prerendering) that allows you to prerender the external "shell" of your app, and defer rendering other parts until they are requested by the client. (Vercel refers to as "PPR". This is not how acronyms work at all, but vercel sure love their [TLAs](https://en.wikipedia.org/wiki/Three-letter_acronym). Would've been odd to call it "PP" though.) This article shows you how you can achieve this for any existing server rendered React app, and serve it with a Cloudflare Worker for great performance.
 
 ![PPR Diagram](../../assets/ppr/vercel-ppr.avif)
 
