@@ -2,6 +2,7 @@
 title: Partial Prerendering for Everyone with Cloudflare Workers
 description: Implementing Next.js-style PPR in a normal React SSR app
 publishDate: "2024-09-23"
+ogImage: "../../assets/ppr/og-image.png"
 ---
 
 tl;dr -
