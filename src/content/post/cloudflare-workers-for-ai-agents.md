@@ -14,7 +14,7 @@ publishDate: "2024-12-10"
 - CPU based billing for long API calls with a lot of dead air.
 
   - Cloudflare Workers are billed by the CPU time used. If you have a long API call, and you're just waiting for something to happen, Cloudflare bills you only for the time you're actually using the CPU when the response comes back in. So when you have a call to an LLM that takes 10 seconds to start responding, and then responds in 0.1 second, you're only billed for 0.1 seconds of CPU time. This is a HUGE win for AI driven services. Even if you have a streaming response, you're only billed for the little bits of CPU time when the chunks come in. Check out [this tweet](https://twitter.com/ritakozlov_/status/1836439073327616114) and [this tweet](https://twitter.com/SullyOmarr/status/1836919489188835770).
-  ![image](https://github.com/user-attachments/assets/80d176a6-3cb3-4ea6-aa15-ac84a0327717)
+    ![image](https://github-production-user-asset-6210df.s3.amazonaws.com/18808/394291911-80d176a6-3cb3-4ea6-aa15-ac84a0327717.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20241210%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241210T133314Z&X-Amz-Expires=300&X-Amz-Signature=0411e08628010302d729fc39723f0031ee43d64dd0c4134833994b0dd3c77f77&X-Amz-SignedHeaders=host)
 
   - Speaking of which...
 
