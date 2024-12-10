@@ -14,6 +14,8 @@ publishDate: "2024-12-10"
 - CPU based billing for long API calls with a lot of dead air.
 
   - Cloudflare Workers are billed by the CPU time used. If you have a long API call, and you're just waiting for something to happen, Cloudflare bills you only for the time you're actually using the CPU when the response comes back in. So when you have a call to an LLM that takes 10 seconds to start responding, and then responds in 0.1 second, you're only billed for 0.1 seconds of CPU time. This is a HUGE win for AI driven services. Even if you have a streaming response, you're only billed for the little bits of CPU time when the chunks come in. Check out [this tweet](https://twitter.com/ritakozlov_/status/1836439073327616114) and [this tweet](https://twitter.com/SullyOmarr/status/1836919489188835770).
+  ![image](https://github.com/user-attachments/assets/80d176a6-3cb3-4ea6-aa15-ac84a0327717)
+
   - Speaking of which...
 
 - [Workers AI](https://developers.cloudflare.com/workers-ai/) has dope models for your use. No API keys when used inside Workers.
