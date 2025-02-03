@@ -4,31 +4,9 @@ description: a UI for every man, woman, child, and ai agent
 publishDate: "2025-02-02"
 ---
 
-what if you gained root access into an agent's brain? what would it look like?
-
 ![no-more-automagic](../../assets/full-stack-ai-agents/no-more-automagic.png)
 
-first, a sidequest. cmd+f "ai agents" to skip a bunch of prologue that you might already know. tl;dr - `vite dev` didn't use to work well with cloudflare workers, but now it does. this opens up fascinating new usecases.
-
-[vite](https://vite.dev/) is a dev/build tool that is super popular in the javascript ecosystem. it started out as a tool for building plain frontend apps, but now works for server side code, etc. it's pretty great. it's particularly nice when building both frontend and backend together, in the same project (so called "full stack apps").
-
-of note, everyone loves the developer experience of `vite dev` - it's really fast, there's an amzing ecosystem of plugins, which you can mix and match for your own stack. some folks might know I've [been vite-pilled for a while now](https://sunilpai.dev/posts/esbuild-with-jason/) (we were so young...), so I'm not even parroting the narrative; I _set_ the damn narrative you common folks consume. I would never shill a product simply because I'm employed by them, or have any financial incentive to make people use it.
-
-ahem. anyway.
-
-cloudflare workers is the world's best platform for running your javascript. the key thing is a custom javscript runtime [workerd](https://github.com/cloudflare/workerd) (built on v8) that is optimized for serverless environments; which gives it magic powers like zero start up time (and it's [super clever how that works](https://blog.cloudflare.com/eliminating-cold-starts-with-cloudflare-workers/)), running on a planetary netowkr in hundreds of cities and thousands of points of presence. this custom runtime has unique apis (that are inspired by standards) that make it a joy to work with; in addition to stuff like `fetch`, `Request`, `Response`, `WebSocket`, `caches`, etc, it has [durable objects](https://developers.cloudflare.com/durable-objects/what-are-durable-objects/), which is the actor model, but for javascript. (I have written about durable objects before: [1](https://sunilpai.dev/posts/the-future-of-serverless/), [2](https://sunilpai.dev/posts/spatial-compute/), [3](https://sunilpai.dev/posts/durable-objects-are-computers/))
-
-the local dev experience is powered by [wrangler](https://github.com/cloudflare/wrangler), which is a cli tool for working with cloudflare workers. among other things, it handles all the boring stuff like compiling your code and dependencies, and running it inside workerd.
-
-`vite dev` is vite's story for local development. it handles all the boring stuff like compiling your code and dependencies... but then for server side code, it uses node. DAMMIT. sure, node now supports standards APIs like `fetch`, `Request`, `Response`, etc, but I can't run workerd-specific stuff durable objects in it. there are workarounds, but they're not ideal. you'd have to build your frontend application with vite dev, and run wrangler in parallel for the backend, it was all very fidgety and not satisfying.
-
-vite 6 fixes that specific problem. tl;dr - [with the new environment api](https://vite.dev/blog/announcing-vite6#experimental-environment-api), you can now run your code inside _any_ custom runtime.
-
-peeps inside cloudflare have been furiously working then on making `vite dev` work with workers. to have a great integrated experience when building an app that targets browser sand workers (and maybe even others? like node, react-native, deno, etc) at the same time. [they just started shipping 0.0.x versions of the plugin](https://npmjs.com/package/@cloudflare/vite-plugin), which means it's time to start playing with it!
-
-(the big caveat here is that existing frameworks still have to change code to support this. that's a process that's underway, but it's only a matter of time before it's done.)
-
-ok, so what the hell does this have to do with "full stack ai agents"?
+what if you gained root access into an agent's brain? what would it look like?
 
 ![smith](../../assets/full-stack-ai-agents/smith.png)
 
@@ -95,6 +73,26 @@ We then setup urls so that everything on `/chat/:id` will be handled by the `Cha
 ![chat ui](../../assets/full-stack-ai-agents/chat-ui.png)
 
 with this setup, every agent now becomes a proper server, a full stack web app, with its own ui. there's nothing stopping us from building fully interactive apps that could modify the agent, send it input/output, etc. a whole new world opens up. you could "login" to an agent, and temporarily give it a new persona, or even a new model. maybe share credit card details while it's trying to make a transaction, and then delete the data to make it "forget" it. change it's prompt midway. perhaps even give it a new model.
+
+Now, let's talk about how we can build this. First, a sidequest about some recent developments that make this possible.
+
+[vite](https://vite.dev/) is a dev/build tool that is super popular in the javascript ecosystem. it started out as a tool for building plain frontend apps, but now works for server side code, etc. it's pretty great. it's particularly nice when building both frontend and backend together, in the same project (so called "full stack apps").
+
+of note, everyone loves the developer experience of `vite dev` - it's really fast, there's an amzing ecosystem of plugins, which you can mix and match for your own stack. some folks might know I've [been vite-pilled for a while now](https://sunilpai.dev/posts/esbuild-with-jason/) (we were so young...), so I'm not even parroting the narrative; I _set_ the damn narrative you common folks consume. I would never shill a product simply because I'm employed by them, or have any financial incentive to make people use it.
+
+ahem. anyway.
+
+cloudflare workers is the world's best platform for running your javascript. the key thing is a custom javscript runtime [workerd](https://github.com/cloudflare/workerd) (built on v8) that is optimized for serverless environments; which gives it magic powers like zero start up time (and it's [super clever how that works](https://blog.cloudflare.com/eliminating-cold-starts-with-cloudflare-workers/)), running on a planetary netowkr in hundreds of cities and thousands of points of presence. this custom runtime has unique apis (that are inspired by standards) that make it a joy to work with; in addition to stuff like `fetch`, `Request`, `Response`, `WebSocket`, `caches`, etc, it has [durable objects](https://developers.cloudflare.com/durable-objects/what-are-durable-objects/), which is the actor model, but for javascript. (I have written about durable objects before: [1](https://sunilpai.dev/posts/the-future-of-serverless/), [2](https://sunilpai.dev/posts/spatial-compute/), [3](https://sunilpai.dev/posts/durable-objects-are-computers/))
+
+the local dev experience is powered by [wrangler](https://github.com/cloudflare/wrangler), which is a cli tool for working with cloudflare workers. among other things, it handles all the boring stuff like compiling your code and dependencies, and running it inside workerd.
+
+`vite dev` is vite's story for local development. it handles all the boring stuff like compiling your code and dependencies... but then for server side code, it uses node. DAMMIT. sure, node now supports standards APIs like `fetch`, `Request`, `Response`, etc, but I can't run workerd-specific stuff durable objects in it. there are workarounds, but they're not ideal. you'd have to build your frontend application with vite dev, and run wrangler in parallel for the backend, it was all very fidgety and not satisfying.
+
+vite 6 fixes that specific problem. tl;dr - [with the new environment api](https://vite.dev/blog/announcing-vite6#experimental-environment-api), you can now run your code inside _any_ custom runtime.
+
+peeps inside cloudflare have been furiously working then on making `vite dev` work with workers. to have a great integrated experience when building an app that targets browser sand workers (and maybe even others? like node, react-native, deno, etc) at the same time. [they just started shipping 0.0.x versions of the plugin](https://npmjs.com/package/@cloudflare/vite-plugin), which means it's time to start playing with it!
+
+(the big caveat here is that existing frameworks still have to change code to support this. that's a process that's underway, but it's only a matter of time before it's done.)
 
 building this without as two separate apps would've been a complete fucking pain in the ass. it would've been doable, but the amount of back and forth and operational complexity... just thinking about it would've been a nightmare. but now I can build this whole app as a single concept, with great dx to just ship when I'm done.
 
