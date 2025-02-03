@@ -97,3 +97,5 @@ peeps inside cloudflare have been furiously working then on making `vite dev` wo
 building this without as two separate apps would've been a complete fucking pain in the ass. it would've been doable, but the amount of back and forth and operational complexity... just thinking about it would've been a nightmare. but now I can build this whole app as a single concept, with great dx to just ship when I'm done.
 
 so... that's the thing. full stack ai agents. does your ai agent have a ui, anon?
+
+(video: https://x.com/threepointone/status/1886214582253089179)
