@@ -104,3 +104,5 @@ with this code, we now have a way to route emails to agents, and a way to route 
 not a groundbreaking idea, but certainly a useful one. it also starts giving shape to another idea, which is that "agents" might not actually have much to do with LLMs after all, they're just containers for execution, that you stuff with capabilities, observability, and a rube goldberg machine that does things. feels like a good mental model to keep in mind.
 
 ![agent-container](../../assets/agent-container.png)
+
+(twitter: https://x.com/threepointone/status/1888763110200115368)
