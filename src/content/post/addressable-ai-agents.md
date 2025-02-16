@@ -99,7 +99,7 @@ export default routeAgents({
 
 the code is quite straightforward since we have a single thread for a durable object. I would use partysync to simplify websockets and ui boilerplate, of course. (should probably also get an email helper like the above into the partyserver family of libraries soon.)
 
-with this code, we now have a way to route emails to agents, and a way to route websocket connections to agents. we can also visit /agents/:id to interact with the agent with a chat interface (impkemetning left as homework to the reader).
+with this code, we now have a way to route emails to agents, and a way to route websocket connections to agents. we can also visit /agents/:id to interact with the agent with a chat interface (implementing that is left as an exercise to the reader).
 
 not a groundbreaking idea, but certainly a useful one. it also starts giving shape to another idea, which is that "agents" might not actually have much to do with LLMs after all, they're just containers for execution, that you stuff with capabilities, observability, and a rube goldberg machine that does things. feels like a good mental model to keep in mind.
 
