@@ -144,4 +144,4 @@ I explored this in the [full stack ai agents](https://sunilpai.dev/posts/full-st
 
 so, that's the pitch. if you're building a local first system, I highly encourage you to consider making sure they're "isomorphic" so that they can run in a browser, mobile app, or ai agent. (yes I just added a third hype word to this!) and use a platform that [makes this part easy, so you can focus on the business logic](https://x.com/threepointone/status/1889661957520736622).
 
-find me on twitter and let's talk about this post.
+find me on twitter and let's talk about this post. https://x.com/threepointone/status/1891199382428557459
