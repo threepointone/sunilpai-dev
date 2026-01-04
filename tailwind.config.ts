@@ -34,9 +34,7 @@ export default {
       transitionProperty: {
         height: "height",
       },
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      // Remove above once tailwindcss exposes theme type
       typography: (theme) => ({
         cactus: {
           css: {
