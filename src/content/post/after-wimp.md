@@ -12,7 +12,7 @@ if you could code, the machine was plastic (or clay?). you could reshape it arou
 
 but if you couldn't code, software had to arrive pre-authored. menus, forms, dashboards, buttons. a finite surface of allowed moves. desktop apps, websites, mobile apps - all required pre-built interfaces.
 
-this was a perfectly sensible arrangement. the GUI era, and especially the WIMP model of windows, icons, menus, and pointer, solved a real problem: most users could express what they wanted, but not the procedure for getting there. so we embedded the procedures into the interface ahead of time. that model emerged from the graphical interface tradition shaped by [Xerox PARC and became the dominant pattern in mainstream personal computing.](https://en.wikipedia.org/wiki/WIMP_%28computing%29?utm_source=chatgpt.com)
+this was a perfectly sensible arrangement. the GUI era, and especially the WIMP model of windows, icons, menus, and pointer, solved a real problem: most users could express what they wanted, but not the procedure for getting there. so we embedded the procedures into the interface ahead of time. that model emerged from the graphical interface tradition shaped by [Xerox PARC and became the dominant pattern in mainstream personal computing.](https://en.wikipedia.org/wiki/WIMP_%28computing%29)
 
 what seems different now is not that everyone suddenly became a programmer. it is that many more people can now describe procedures in a form that can be compiled into code.
 
