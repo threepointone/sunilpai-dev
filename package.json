@@ -13,33 +13,29 @@
     "format": "prettier -w --cache ."
   },
   "devDependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/sitemap": "^3.6.0",
-    "@astrojs/tailwind": "^6.0.2",
-    "@pagefind/default-ui": "^1.0.4",
-    "@resvg/resvg-js": "^2.6.0",
+    "@astrojs/sitemap": "^3.7.1",
+    "@pagefind/default-ui": "^1.4.0",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
-    "@tailwindcss/typography": "^0.5.10",
-    "@types/prettier": "^2.7.3",
-    "autoprefixer": "^10.4.17",
-    "pagefind": "^1.0.4",
-    "postcss": "^8.4.33",
-    "postcss-html": "^1.6.0",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "0.13.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "remark-unwrap-images": "^4.0.0",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.27",
+    "pagefind": "^1.4.0",
+    "postcss": "^8.5.8",
+    "postcss-html": "^1.8.1",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "0.14.1",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/prefetch": "^0.4.1",
-    "@astrojs/rss": "^4.0.14",
-    "astro": "^5.16.6",
-    "satori": "0.10.13",
+    "@astrojs/check": "^0.9.7",
+    "@astrojs/rss": "^4.0.17",
+    "astro": "^6.0.4",
+    "rehype-unwrap-images": "^1.0.0",
+    "satori": "0.25.0",
     "satori-html": "^0.3.2",
-    "sharp": "0.32.6"
+    "sharp": "0.34.5"
   }
 }

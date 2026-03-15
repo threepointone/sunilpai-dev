@@ -1,16 +1,13 @@
 import { defineConfig, sharpImageService } from "astro/config";
-import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
 import sitemap from "@astrojs/sitemap";
-import prefetch from "@astrojs/prefetch";
-import remarkUnwrapImages from "remark-unwrap-images";
+import rehypeUnwrapImages from "rehype-unwrap-images";
 
 // https://astro.build/config
 export default defineConfig({
   // ! Please remember to replace the following site property with your own domain
   site: "https://sunilpai.dev/",
   markdown: {
-    remarkPlugins: [remarkUnwrapImages],
+    rehypePlugins: [rehypeUnwrapImages],
     shikiConfig: {
       theme: "dracula",
       wrap: true,
@@ -21,12 +18,9 @@ export default defineConfig({
     service: sharpImageService(),
   },
   integrations: [
-    mdx({}),
-    tailwind({
-      applyBaseStyles: false,
-    }),
+
     sitemap(),
-    prefetch(),
+
   ],
   compressHTML: true,
   vite: {
