@@ -10,13 +10,14 @@ interface Props extends IElement {
 
 const { post, as: Element = "div", withDesc = false } = Astro.props;
 const date = new Date(post.data.publishDate);
+const slug = post.id;
 const datetime = date.toISOString();
 const postDate = getFormattedDate(date);
 ---
 
 <time datetime={datetime} class="min-w-[120px] text-gray-500">{postDate}</time>
 <Element>
-  <a href={`/posts/${post.slug}/`} class="cactus-link" rel="prefetch">
+  <a href={`/posts/${slug}/`} class="cactus-link" rel="prefetch">
     {post.data.title}
   </a>
 </Element>

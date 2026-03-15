@@ -1,22 +1,9 @@
 import type { Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 import plugin from "tailwindcss/plugin";
 
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,svelte,ts,tsx,vue}"],
   darkMode: "class",
-  corePlugins: {
-    // disable aspect ratio as per docs -> @tailwindcss/aspect-ratio
-    aspectRatio: false,
-    // disable some core plugins as they are included in the css, even when unused
-    touchAction: false,
-    ringOffsetWidth: false,
-    ringOffsetColor: false,
-    scrollSnapType: false,
-    borderOpacity: false,
-    textOpacity: false,
-    fontVariantNumeric: false,
-  },
   theme: {
     extend: {
       colors: {
@@ -26,16 +13,10 @@ export default {
         accent: "var(--theme-accent)",
         "accent-2": "var(--theme-accent-2)",
       },
-      fontFamily: {
-        // Add any custom fonts here
-        sans: [...fontFamily.sans],
-        serif: [...fontFamily.serif],
-      },
       transitionProperty: {
         height: "height",
       },
-      // @ts-ignore
-      typography: (theme) => ({
+      typography: () => ({
         cactus: {
           css: {
             "--tw-prose-body": "var(--theme-text)",
@@ -85,7 +66,7 @@ export default {
         sm: {
           css: {
             code: {
-              fontSize: theme("fontSize.sm")[0],
+              fontSize: "0.875rem",
               fontWeight: "400",
             },
           },

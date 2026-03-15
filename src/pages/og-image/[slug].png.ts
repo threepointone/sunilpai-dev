@@ -1,5 +1,5 @@
 import type { APIContext, GetStaticPaths } from "astro";
-import { getCollection, getEntryBySlug } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import satori from "satori";
@@ -58,8 +58,16 @@ const markup = (title: string, pubDate: string) =>
     </div>
   </div>`;
 
-export async function GET({ params: { slug } }: APIContext) {
-  const post = await getEntryBySlug("post", slug!);
+export async function GET({ params }: APIContext) {
+  const slug = params?.slug;
+  if (!slug) {
+    return new Response("Missing slug", { status: 400 });
+  }
+
+  const post = await getEntry({ collection: "post", id: slug });
+  if (!post) {
+    return new Response("Post not found", { status: 404 });
+  }
   const title = post?.data.title ?? siteConfig.title;
   const postDate = getFormattedDate(post?.data.publishDate ?? Date.now(), {
     weekday: "long",
@@ -67,7 +75,8 @@ export async function GET({ params: { slug } }: APIContext) {
   });
   const svg = await satori(markup(title, postDate), ogOptions);
   const png = new Resvg(svg).render().asPng();
-  return new Response(png, {
+  const body = new Uint8Array(png);
+  return new Response(body, {
     headers: {
       "Content-Type": "image/png",
       "Cache-Control": "public, max-age=3600, immutable",
@@ -77,5 +86,5 @@ export async function GET({ params: { slug } }: APIContext) {
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("post");
-  return posts.filter(({ data }) => !data.ogImage).map(({ slug }) => ({ params: { slug } }));
+  return posts.filter(({ data }) => !data.ogImage).map(({ id }) => ({ params: { slug: id } }));
 }) satisfies GetStaticPaths;
