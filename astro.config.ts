@@ -17,11 +17,7 @@ export default defineConfig({
     // https://docs.astro.build/en/guides/assets/#using-sharp
     service: sharpImageService(),
   },
-  integrations: [
-
-    sitemap(),
-
-  ],
+  integrations: [sitemap()],
   compressHTML: true,
   vite: {
     optimizeDeps: {

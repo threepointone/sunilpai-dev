@@ -2,8 +2,6 @@
 @reference "tailwindcss";
 @config "../../tailwind.config.ts";
 
-
-
 @layer base {
   :root {
     color-scheme: light;

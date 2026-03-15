@@ -10,24 +10,7 @@
     "build": "echo node version && node -v && astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
-    "format": "prettier -w --cache ."
-  },
-  "devDependencies": {
-    "@astrojs/sitemap": "^3.7.1",
-    "@pagefind/default-ui": "^1.4.0",
-    "@resvg/resvg-js": "^2.6.2",
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
-    "@tailwindcss/postcss": "^4.2.1",
-    "@tailwindcss/typography": "^0.5.19",
-    "pagefind": "^1.4.0",
-    "postcss": "^8.5.8",
-    "postcss-html": "^1.8.1",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "0.14.1",
-    "prettier-plugin-tailwindcss": "^0.7.2",
-    "tailwindcss": "^4.2.1",
-    "typescript": "^5.9.3"
+    "format": "oxfmt --write ."
   },
   "dependencies": {
     "@astrojs/check": "^0.9.7",
@@ -37,5 +20,20 @@
     "satori": "0.25.0",
     "satori-html": "^0.3.2",
     "sharp": "0.34.5"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@pagefind/default-ui": "^1.4.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@tailwindcss/typography": "^0.5.19",
+    "oxfmt": "^0.40.0",
+    "pagefind": "^1.4.0",
+    "postcss": "^8.5.8",
+    "postcss-html": "^1.8.1",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
   }
 }

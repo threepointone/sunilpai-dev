@@ -28,9 +28,9 @@ that is the part I think we are only just beginning to understand.
 
 ## code mode was a clue
 
-[last year at Cloudflare](https://blog.cloudflare.com/code-mode/), we talked about code mode as a better way for models to use tools. the immediate problem was practical: conventional tool calling has a slightly awkward shape. the model calls a tool, pulls the result back through the context window, calls another tool, pulls that result back through the model, and so on. as the tool surface grows, this gets both expensive and clumsy. Cloudflare’s original code mode post framed this as a way to let the model write and execute code that can combine tool calls directly, instead of shuttling every intermediate result back through the model.  
+[last year at Cloudflare](https://blog.cloudflare.com/code-mode/), we talked about code mode as a better way for models to use tools. the immediate problem was practical: conventional tool calling has a slightly awkward shape. the model calls a tool, pulls the result back through the context window, calls another tool, pulls that result back through the model, and so on. as the tool surface grows, this gets both expensive and clumsy. Cloudflare’s original code mode post framed this as a way to let the model write and execute code that can combine tool calls directly, instead of shuttling every intermediate result back through the model.
 
-[the MCP version by Matt Carey](https://blog.cloudflare.com/code-mode-mcp/) makes the same point even more sharply. the Cloudflare API MCP server exposes access to the entire API using essentially two tools, `search()` and `execute()`, while consuming around 1,000 tokens. we claimed that a naive equivalent MCP server would require about 1.17 million tokens, a reduction of 99.9%.  
+[the MCP version by Matt Carey](https://blog.cloudflare.com/code-mode-mcp/) makes the same point even more sharply. the Cloudflare API MCP server exposes access to the entire API using essentially two tools, `search()` and `execute()`, while consuming around 1,000 tokens. we claimed that a naive equivalent MCP server would require about 1.17 million tokens, a reduction of 99.9%.
 
 that is the obvious story: fewer tokens, fewer round-trips, less context waste.
 
@@ -50,7 +50,7 @@ to the model’s credit, it switched modes immediately. it analyzed the stroke d
 
 what struck me about that demo was that no new application really needed to be generated at all. the intelligence was not in scaffolding a fresh app. it was in understanding an existing stateful environment and using code as the mechanism of interaction with it.
 
-that feels capital I "important"  
+that feels capital I "important"
 
 it suggests that the future is not just “ask an LLM to generate a program for me.” sometimes it will be that. but sometimes the more interesting move is that the system exposes state plus capabilities, and the model learns to _inhabit_ that environment, y'dig?
 
@@ -74,7 +74,7 @@ a lot of current infrastructure in this space starts from the model of a general
 
 that is the interesting thing about isolates here.
 
-Cloudflare’s [dynamic worker loader docs](https://developers.cloudflare.com/workers/runtime-apis/bindings/worker-loader/) make this unusually explicit. dynamic workers run in isolates; outbound network requests can be blocked or intercepted; and only specific bindings can be supplied to represent the resources the sandboxed code is allowed to access. the docs are also unusually direct about the intended use case: with proper sandboxing configured, you can safely run code you do not trust in a dynamic isolate. by contrast, [Node’s own documentation](https://nodejs.org/api/vm.html#vm-executing-javascript) says plainly that `node:vm` is not a security mechanism and should not be used to run untrusted code.  
+Cloudflare’s [dynamic worker loader docs](https://developers.cloudflare.com/workers/runtime-apis/bindings/worker-loader/) make this unusually explicit. dynamic workers run in isolates; outbound network requests can be blocked or intercepted; and only specific bindings can be supplied to represent the resources the sandboxed code is allowed to access. the docs are also unusually direct about the intended use case: with proper sandboxing configured, you can safely run code you do not trust in a dynamic isolate. by contrast, [Node’s own documentation](https://nodejs.org/api/vm.html#vm-executing-javascript) says plainly that `node:vm` is not a security mechanism and should not be used to run untrusted code.
 
 (yeah whatever, this sounds like a marketing pitch, but whatever. that is not the only implementation that will matter, and it is not really the point. someone else will build different runtime mechanisms for this, and they should. the larger thesis has very little to do with any one vendor.)
 
@@ -106,7 +106,7 @@ that is not just a better recommendation engine. it is not quite a chatbot eithe
 
 ## after wimp is not after ui
 
-I suspect this is the real significance of the moment we are entering. the successor to [WIMP](https://en.wikipedia.org/wiki/WIMP_%28computing%29) is probably not “chat,” at least not in the simplistic sense people sometimes mean. we are not heading toward a world where all software collapses into a text box. WIMP solved a real problem. it gave us stable, visual, learnable systems. those properties still matter. 
+I suspect this is the real significance of the moment we are entering. the successor to [WIMP](https://en.wikipedia.org/wiki/WIMP_%28computing%29) is probably not “chat,” at least not in the simplistic sense people sometimes mean. we are not heading toward a world where all software collapses into a text box. WIMP solved a real problem. it gave us stable, visual, learnable systems. those properties still matter.
 
 but fixed graphical interfaces stop being the only sensible contract between user and machine once the user can increasingly express procedures through a model. some interfaces will still be hand-authored. some will be generated. some will be assembled on the fly around a particular task. some will disappear into the background and exist mostly as code running on the user’s behalf.
 
