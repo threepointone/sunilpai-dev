@@ -40,7 +40,7 @@ the deeper lesson is that _models are often better at writing code to use a syst
 
 ![kenton says he wants to demo something](../../assets/kenton-demo.png)
 
-the moment this really clicked for me was during one of Kenton’s demos. he had an LLM coding agent connected to a canvas. he drew a tic-tac-toe board on it, added an `X` in one corner, and the model immediately did the obvious 2026 thing: it started generating tic-tac-toe application code.
+the moment this really clicked for me was during one of Kenton’s demos. he had an LLM coding agent connected to a canvas. he drew a tic-tac-toe board on it, added an `X` in one corner, then asked the model to play tic tac toe. the model immediately did the obvious 2026 thing: it started generating tic-tac-toe application code.
 
 Kenton stopped it.
 
