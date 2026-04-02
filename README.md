@@ -17,14 +17,14 @@ npm run dev          # start the dev server (default http://localhost:4321)
 
 ### Common scripts
 
-| Command           | Description                                            |
-| ----------------- | ------------------------------------------------------ |
-| `npm run dev`     | Launch Astro dev server with live reload               |
-| `npm run build`   | Production build (outputs to `dist/`)                  |
-| `npm run preview` | Preview the production build locally                   |
-| `npm run postbuild` | Build the Pagefind search index after a production build |
-| `npm run sync`    | Regenerate types from `src/content.config.ts`          |
-| `npm run format`  | Format the repository with [oxfmt](https://github.com/oxc-project/oxfmt) |
+| Command             | Description                                                              |
+| ------------------- | ------------------------------------------------------------------------ |
+| `npm run dev`       | Launch Astro dev server with live reload                                 |
+| `npm run build`     | Production build (outputs to `dist/`)                                    |
+| `npm run preview`   | Preview the production build locally                                     |
+| `npm run postbuild` | Build the Pagefind search index after a production build                 |
+| `npm run sync`      | Regenerate types from `src/content.config.ts`                            |
+| `npm run format`    | Format the repository with [oxfmt](https://github.com/oxc-project/oxfmt) |
 
 Swap `npm` for `pnpm`/`yarn` if you prefer other package managers.
 
@@ -43,7 +43,7 @@ Swap `npm` for `pnpm`/`yarn` if you prefer other package managers.
 
 ## Deployment
 
-Run a full build (`npm run build && npm run postbuild`) and deploy the `dist/` directory to your hosting provider. 
+Run a full build (`npm run build && npm run postbuild`) and deploy the `dist/` directory to your hosting provider.
 
 ## License
 

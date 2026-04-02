@@ -8,18 +8,38 @@ const { themeColorDark, themeColorLight } = siteConfig;
 <script define:vars={{ themeColorDark, themeColorLight }}>
   const root = document.documentElement;
   const colorThemeMetaTag = document.querySelector("meta[name='theme-color']");
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const storedTheme = typeof localStorage !== "undefined" && localStorage.getItem("theme");
-  const userTheme =
-    storedTheme || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  const theme = storedTheme || "system";
+
+  function resolveTheme(theme) {
+    if (theme === "system") return mediaQuery.matches ? "dark" : "light";
+    return theme;
+  }
+
+  function applyTheme(resolved) {
+    const isDark = resolved === "dark";
+    root.classList.toggle("dark", isDark);
+    colorThemeMetaTag.setAttribute("content", isDark ? themeColorDark : themeColorLight);
+  }
+
   function setTheme(theme) {
-    root.classList.toggle("dark", theme === "dark");
-    colorThemeMetaTag.setAttribute("content", theme === "dark" ? themeColorDark : themeColorLight);
+    applyTheme(resolveTheme(theme));
+    root.dataset.theme = theme;
     if (typeof localStorage !== "undefined") {
       localStorage.setItem("theme", theme);
     }
   }
-  setTheme(userTheme);
+
+  setTheme(theme);
+
   root.addEventListener("theme-change", (e) => {
     setTheme(e.detail.theme);
+  });
+
+  mediaQuery.addEventListener("change", () => {
+    if (root.dataset.theme === "system") {
+      applyTheme(resolveTheme("system"));
+    }
   });
 </script>

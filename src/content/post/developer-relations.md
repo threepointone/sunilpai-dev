@@ -4,7 +4,6 @@ description: (corollary- developer relations is becoming more about helping huma
 publishDate: "2026-04-02"
 ---
 
-
 I’ve been thinking a bit lately about what developer relations means right now, and the thought keeps coming back because of a pattern I’ve heard from a bunch of different people over the last few months. educators and technical content creators keep telling me the same thing: engagement is softer, course sales are softer, and people seem much less willing to pay for educational material than they were even a year ago.
 
 that’s a strange thing to hear at a moment when software activity itself does not seem to be shrinking. if anything, more code is being produced than ever. “produced” is probably the better word now, since “written” no longer quite captures what many of us are doing, but the point stands. there is a lot of software being made, so why does the market for learning feel weaker?
