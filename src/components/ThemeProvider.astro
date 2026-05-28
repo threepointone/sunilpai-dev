@@ -5,7 +5,7 @@ const { themeColorDark, themeColorLight } = siteConfig;
 ---
 
 {/* Inlined to avoid FOUC. */}
-<script define:vars={{ themeColorDark, themeColorLight }}>
+<script define:vars={{ themeColorDark, themeColorLight }} is:inline>
   const root = document.documentElement;
   const colorThemeMetaTag = document.querySelector("meta[name='theme-color']");
   const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
