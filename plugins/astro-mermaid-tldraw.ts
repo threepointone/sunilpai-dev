@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import { renderDiagrams } from "../scripts/render-mermaid";
+import { cleanOrphans, renderDiagrams } from "../scripts/render-mermaid";
 
 function isContentMarkdown(file: string): boolean {
   const normalized = file.replace(/\\/g, "/");
@@ -12,22 +12,29 @@ function isContentMarkdown(file: string): boolean {
  *
  * - `astro:config:setup` renders once before every dev start and build, so the
  *   SVGs the remark plugin points at always exist (the browser only launches if
- *   something is actually stale).
+ *   something is actually stale). On `build` it then prunes orphaned SVGs (from
+ *   edited or removed diagrams) before `public/` is copied into `dist`.
  * - `astro:server:setup` watches content markdown in dev and re-renders on edit,
  *   then forces a reload so a freshly produced diagram shows up without a manual
  *   refresh.
  *
- * Filenames are content-hashed and never auto-pruned, so an existing diagram URL
- * always resolves even if Astro serves a slightly stale render cache.
+ * In dev, filenames are content-hashed and never auto-pruned, so an existing
+ * diagram URL always resolves even if Astro serves a slightly stale render
+ * cache. Pruning is confined to `build`, where there is no live cache to 404.
  */
 export function mermaidTldraw(): AstroIntegration {
   return {
     name: "mermaid-tldraw",
     hooks: {
-      "astro:config:setup": async ({ logger }) => {
+      "astro:config:setup": async ({ command, logger }) => {
         const { total, rendered } = await renderDiagrams();
-        if (!total) return;
-        logger.info(rendered ? `rendered ${rendered}/${total} diagram(s)` : `${total} diagram(s) cached`);
+        if (total) {
+          logger.info(rendered ? `rendered ${rendered}/${total} diagram(s)` : `${total} diagram(s) cached`);
+        }
+        if (command === "build") {
+          const pruned = await cleanOrphans();
+          if (pruned) logger.info(`pruned ${pruned} orphaned diagram file(s)`);
+        }
       },
       "astro:server:setup": ({ server, logger }) => {
         let running = Promise.resolve();

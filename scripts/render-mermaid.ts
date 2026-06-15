@@ -82,21 +82,34 @@ async function isUpToDate(hash: string): Promise<boolean> {
  * and deleting that file would 404. Run explicitly (`npm run mermaid:clean`)
  * when you want to GC, ideally after clearing Astro's cache.
  */
-async function pruneOrphans(keep: Set<string>): Promise<void> {
+async function pruneOrphans(keep: Set<string>): Promise<number> {
   let files: string[];
   try {
     files = await fs.readdir(outDir);
   } catch {
-    return;
+    return 0;
   }
+  let pruned = 0;
   for (const name of files) {
     if (!name.endsWith(".svg")) continue;
     const hash = name.replace(/\.dark\.svg$/, "").replace(/\.svg$/, "");
     if (!keep.has(hash)) {
       await fs.rm(path.join(outDir, name));
       console.log(`[mermaid] pruned orphan ${name}`);
+      pruned++;
     }
   }
+  return pruned;
+}
+
+/**
+ * Delete rendered SVGs no current diagram references. Safe at build time (no
+ * long-lived render cache to 404 against); avoid while a dev server is running.
+ * Returns the number of files removed.
+ */
+export async function cleanOrphans(): Promise<number> {
+  const diagrams = await collectDiagrams();
+  return pruneOrphans(new Set(diagrams.map((d) => d.hash)));
 }
 
 async function renderPending(pending: Diagram[]): Promise<void> {
@@ -179,10 +192,7 @@ export async function renderDiagrams(): Promise<RenderSummary> {
 }
 
 async function main(): Promise<void> {
-  if (process.argv.includes("--clean")) {
-    const diagrams = await collectDiagrams();
-    await pruneOrphans(new Set(diagrams.map((d) => d.hash)));
-  }
+  if (process.argv.includes("--clean")) await cleanOrphans();
 
   const { total, rendered } = await renderDiagrams();
   if (!total) console.log("[mermaid] no mermaid diagrams found");
