@@ -24,7 +24,8 @@ interface Parent {
 function parseMeta(meta: string | null | undefined): Record<string, string> {
   const out: Record<string, string> = {};
   for (const match of (meta ?? "").matchAll(/(\w+)=("[^"]*"|'[^']*'|\S+)/g)) {
-    out[match[1]] = match[2].replace(/^['"]|['"]$/g, "");
+    const [, key, rawValue] = match;
+    if (key && rawValue) out[key] = rawValue.replace(/^['"]|['"]$/g, "");
   }
   return out;
 }

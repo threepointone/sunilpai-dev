@@ -3,27 +3,58 @@ import { getCollection } from "astro:content";
 import PageLayout from "@/layouts/Base";
 import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
-import { sortMDByDate } from "@/utils";
+import { publishedPosts, sortMDByDate } from "@/utils";
 
-const MAX_POSTS = 50;
+const MAX_POSTS = 6;
 const allPosts = await getCollection("post");
-const allPostsByDate = sortMDByDate(allPosts).slice(0, MAX_POSTS);
+const allPostsByDate = sortMDByDate(publishedPosts(allPosts)).slice(0, MAX_POSTS);
 ---
 
-<PageLayout meta={{ title: "Home" }}>
-  <section aria-label="Blog post list">
-    <h2 class="title mb-4 text-xl">Posts</h2>
-    <ul class="space-y-4 sm:space-y-2">
+<PageLayout
+  meta={{
+    title: "Sunil Pai",
+    description:
+      "Sunil Pai writes about developer tools, distributed systems, AI agents, and the craft of making software.",
+  }}
+>
+  <section class="home-intro" aria-labelledby="intro-title">
+    <p class="eyebrow">Software, systems, and making things</p>
+    <h1 id="intro-title" class="display-title mt-3">I make tools for people who make things.</h1>
+    <div class="mt-6 max-w-[42rem] space-y-4 text-lg leading-8">
+      <p>
+        I’m a product-minded systems engineer, founder, and developer-tools builder in London.
+        I’ve worked on React, Cloudflare Workers, PartyKit, and now durable infrastructure for AI
+        agents.
+      </p>
+      <p class="text-muted">
+        This is where I write about software, new computing primitives, and what the work feels
+        like while it is changing beneath us.
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-20" aria-labelledby="recent-writing">
+    <div class="mb-6 flex items-baseline justify-between gap-4 border-b border-dotted border-divider pb-3">
+      <h2 id="recent-writing" class="section-title">Recent writing</h2>
+      <a class="quiet-link shrink-0" href="/posts/">Full archive →</a>
+    </div>
+    <ul class="divide-y divide-dotted divide-divider">
       {
         allPostsByDate.map((p) => (
-          <li class="flex flex-col gap-x-2 sm:flex-row">
-            <PostPreview post={p} />
+          <li class="py-5 first:pt-0">
+            <div class="flex flex-col gap-x-4 sm:flex-row sm:items-baseline">
+              <PostPreview post={p} />
+            </div>
+            <p class="mt-2 max-w-[38rem] text-sm leading-6 text-muted sm:ms-[136px]">
+              {p.data.description}
+            </p>
           </li>
         ))
       }
     </ul>
   </section>
-  <section class="mt-16">
+
+  <section class="mt-16 border-t border-dotted border-divider pt-8">
     <SocialList />
   </section>
 </PageLayout>

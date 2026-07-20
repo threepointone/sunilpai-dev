@@ -1,9 +1,10 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import { siteConfig } from "@/site-config";
+import { publishedPosts, sortMDByDate } from "@/utils";
 
 export const GET = async () => {
-  const posts = await getCollection("post");
+  const posts = sortMDByDate(publishedPosts(await getCollection("post")));
 
   return rss({
     title: siteConfig.title,
@@ -13,7 +14,7 @@ export const GET = async () => {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.publishDate,
-      link: `posts/${post.id}`,
+      link: `/posts/${post.id}/`,
     })),
   });
 };

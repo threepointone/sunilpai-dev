@@ -22,7 +22,7 @@ npm run dev          # start the dev server (default http://localhost:4321)
 | `npm run dev`       | Launch Astro dev server with live reload                                 |
 | `npm run build`     | Production build (outputs to `dist/`)                                    |
 | `npm run preview`   | Preview the production build locally                                     |
-| `npm run postbuild` | Build the Pagefind search index after a production build                 |
+| `npm run check`     | Type-check Astro components and supporting TypeScript                    |
 | `npm run sync`      | Regenerate types from `src/content.config.ts`                            |
 | `npm run format`    | Format the repository with [oxfmt](https://github.com/oxc-project/oxfmt) |
 
@@ -32,7 +32,7 @@ Swap `npm` for `pnpm`/`yarn` if you prefer other package managers.
 
 1. Create or edit Markdown/MDX files inside `src/content/post`.
 2. Each file’s filename becomes its slug; use `entry.id` when referencing entries in code.
-3. Frontmatter is validated by `src/content.config.ts` (title, description, publish date, tags, optional cover/OG image fields).
+3. Frontmatter is validated by `src/content.config.ts` (title, description, publish date, optional draft, cover, and OG image fields).
 4. Generated OG images live at `/og-image/[id].png`; set `ogImage` in frontmatter to override.
 
 ## Styling & configuration
@@ -43,7 +43,7 @@ Swap `npm` for `pnpm`/`yarn` if you prefer other package managers.
 
 ## Deployment
 
-Run a full build (`npm run build && npm run postbuild`) and deploy the `dist/` directory to your hosting provider.
+Run a full build (`npm run build`) and deploy the `dist/` directory to your hosting provider. The build automatically generates the Pagefind search index.
 
 ## License
 

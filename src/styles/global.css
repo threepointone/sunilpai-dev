@@ -2,27 +2,47 @@
 @reference "tailwindcss";
 @config "../../tailwind.config.ts";
 
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../assets/roboto-mono-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto Mono";
+  src: url("../assets/roboto-mono-700.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
 @layer base {
   :root {
     color-scheme: light;
-    --theme-bg: #fafafa;
-    --theme-link: #567c77;
-    --theme-text: #22272a;
-    --theme-accent: #cc2a42;
-    --theme-accent-2: #111;
-    --theme-quote: #cc2a42;
-    --theme-menu-bg: rgb(250 250 250 / 0.85);
+    --theme-bg: #f8f6f0;
+    --theme-link: #315f78;
+    --theme-text: #292824;
+    --theme-muted: #706d65;
+    --theme-divider: #c9c4b8;
+    --theme-accent: #42678f;
+    --theme-accent-2: #181714;
+    --theme-quote: #42678f;
+    --theme-menu-bg: rgb(248 246 240 / 0.9);
   }
 
   :root.dark {
     color-scheme: dark;
-    --theme-bg: #1d1f21;
-    --theme-link: #d480aa;
-    --theme-text: #c9cacc;
-    --theme-accent: #2bbc89;
-    --theme-accent-2: #eee;
-    --theme-quote: #ccffb6;
-    --theme-menu-bg: rgb(29 31 33 / 0.85);
+    --theme-bg: #1c1d1c;
+    --theme-link: #8fc4d0;
+    --theme-text: #d5d1c8;
+    --theme-muted: #96928a;
+    --theme-divider: #494741;
+    --theme-accent: #8fb4d8;
+    --theme-accent-2: #f3efe6;
+    --theme-quote: #a8c7e3;
+    --theme-menu-bg: rgb(28 29 28 / 0.9);
   }
 
   html {
@@ -30,12 +50,87 @@
   }
 
   html body {
-    @apply mx-auto flex h-full max-w-[48rem] flex-col bg-bgColor px-8 pt-16 text-base font-normal text-textColor antialiased;
+    @apply mx-auto flex h-full max-w-[48rem] flex-col bg-bgColor px-8 pt-12 text-base font-normal text-textColor antialiased sm:pt-16;
+    background-image: radial-gradient(
+      circle at 50% -10rem,
+      color-mix(in srgb, var(--theme-accent) 6%, transparent),
+      transparent 28rem
+    );
+    background-repeat: no-repeat;
+    background-size: 100% 36rem;
   }
+}
+
+@layer components {
+  .site-name {
+    @apply font-bold tracking-[-0.035em];
+  }
+
+  .display-title {
+    @apply max-w-[42rem] text-4xl font-bold leading-[1.08] tracking-[-0.045em] text-accent-2 sm:text-5xl;
+  }
+
+  .section-title {
+    @apply text-xl font-bold tracking-[-0.03em] text-accent-2;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.12em] text-accent;
+    font-family: "Roboto Mono", ui-monospace, monospace;
+  }
+
+  time {
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+
+  .text-muted {
+    color: var(--theme-muted);
+  }
+
+  .border-divider,
+  .divide-divider > :not(:last-child) {
+    border-color: var(--theme-divider);
+  }
+
+  .quiet-link {
+    @apply text-sm font-medium text-link underline decoration-dotted underline-offset-4;
+  }
+
+  .quiet-link:hover {
+    color: var(--theme-accent);
+  }
+
+  .home-intro {
+    @apply relative;
+  }
+
+  .home-intro::before {
+    content: "";
+    @apply absolute -start-5 top-1 h-20 w-px bg-accent sm:-start-8;
+  }
+
+  .post-summary {
+    @apply max-w-[40rem] border-s-2 border-accent ps-4 text-lg leading-7 text-muted;
+    text-wrap: balance;
+  }
+}
+
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
 }
 
 .prose :where(strong, code) {
   color: black;
+}
+
+.prose iframe {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 html.dark .prose :where(strong, code) {

@@ -12,12 +12,14 @@ export default {
         link: "var(--theme-link)",
         accent: "var(--theme-accent)",
         "accent-2": "var(--theme-accent-2)",
+        muted: "var(--theme-muted)",
+        divider: "var(--theme-divider)",
       },
       transitionProperty: {
         height: "height",
       },
       typography: () => ({
-        cactus: {
+        editorial: {
           css: {
             "--tw-prose-body": "var(--theme-text)",
             "--tw-prose-headings": "var(--theme-accent-2)",
@@ -33,7 +35,10 @@ export default {
         DEFAULT: {
           css: {
             a: {
-              "@apply cactus-link no-underline": "",
+              color: "var(--theme-link)",
+              textDecorationLine: "underline",
+              textDecorationStyle: "dotted",
+              textUnderlineOffset: "4px",
             },
             strong: {
               fontWeight: "700",
@@ -79,7 +84,7 @@ export default {
     require("@tailwindcss/aspect-ratio"),
     plugin(function ({ addComponents }) {
       addComponents({
-        ".cactus-link": {
+        ".ink-link": {
           "@apply bg-[size:100%_6px] bg-bottom bg-repeat-x": {},
           backgroundImage:
             "linear-gradient(transparent,transparent 5px,var(--theme-text) 5px,var(--theme-text))",
@@ -89,7 +94,7 @@ export default {
           },
         },
         ".title": {
-          "@apply text-2xl font-semibold text-accent-2": {},
+          "@apply text-2xl font-bold tracking-[-0.035em] text-accent-2 sm:text-3xl": {},
         },
       });
     }),

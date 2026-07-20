@@ -2,6 +2,7 @@
 title: iff
 description: On implementing a client for feature flags in your UI codebase
 publishDate: "2021-01-04"
+draft: true
 ---
 
 (_This post was originally posted on [gist.github.com](https://gist.github.com/threepointone/0609a9ed627abb5650f2410b8e6a257c), with development now on [github](https://github.com/jpmorganchase/iff)_)

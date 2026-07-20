@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { createRoot } from "react-dom/client";
-import { type Editor, type TLDefaultFont, Tldraw, toRichText } from "tldraw";
+import { type Editor, type TLDefaultFontStyle, Tldraw, toRichText } from "tldraw";
 import { createMermaidDiagram } from "@tldraw/mermaid";
 import "tldraw/tldraw.css";
 
@@ -29,12 +29,12 @@ declare global {
  * for them to load forces the fonts in before we render anything.
  */
 async function preloadFonts(editor: Editor): Promise<void> {
-  const fonts: TLDefaultFont[] = ["draw", "sans", "serif", "mono"];
+  const fonts: TLDefaultFontStyle[] = ["draw", "sans", "serif", "mono"];
   for (const font of fonts) {
     editor.createShape({ type: "text", x: 0, y: 0, props: { richText: toRichText("Mgjpqy"), font } });
   }
   await editor.fonts.loadRequiredFontsForCurrentPage();
-  await editor.getContainerDocument().fonts.ready;
+  await editor.getContainer().ownerDocument.fonts.ready;
   editor.deleteShapes([...editor.getCurrentPageShapeIds()]);
 }
 

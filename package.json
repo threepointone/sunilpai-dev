@@ -10,7 +10,7 @@
     "check": "astro check",
     "mermaid": "tsx scripts/render-mermaid.ts",
     "mermaid:clean": "tsx scripts/render-mermaid.ts --clean",
-    "build": "echo node version && node -v && astro build",
+    "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "format": "oxfmt --write ."
@@ -29,7 +29,6 @@
     "@pagefind/default-ui": "^1.5.2",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/nesting": "^0.0.0-insiders.565cd3e",
     "@tailwindcss/postcss": "^4.3.0",
     "@tailwindcss/typography": "^0.5.19",
     "@tldraw/mermaid": "^5.1.1",

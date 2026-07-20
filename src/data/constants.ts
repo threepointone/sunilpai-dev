@@ -8,17 +8,14 @@ export const MENU_LINKS = [
     path: "/about/",
   },
   {
-    title: "Blog",
+    title: "Archive",
     path: "/posts/",
   },
 ];
 
-// ! Remember to add your own socials
 export const SOCIAL_LINKS = {
   github: "https://github.com/threepointone",
-  bluesky: "https://bsky.app/profile/threepointone.bsky.social",
   twitter: "https://twitter.com/threepointone",
-  discord: "https://discord.gg/g5uqHQJc3z",
+  instagram: "https://www.instagram.com/threepointone/",
   linkedin: "https://www.linkedin.com/in/sunil-pai-a47732253/",
-  // email: "me@sunilpai.dev",
 };

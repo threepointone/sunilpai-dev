@@ -25,7 +25,7 @@ it’s tempting to picture an llm as navigating a huge multidimensional “idea-
 
 ## quick sidequest: the seven ways
 
-![](../../assets/steven-johnson-where-good-ideas-come-from.png)
+![Book cover of Where Good Ideas Come From by Steven Johnson](../../assets/steven-johnson-where-good-ideas-come-from.png)
 
 [steven johnson’s “where good ideas come from”](https://www.amazon.com/Where-Good-Ideas-Come-Innovation/dp/1594487715/) is one of those lists that sounds like it belongs on a poster until you use it as a diagnostic tool. here’s the version that matters for engineering:
 

@@ -1,6 +1,7 @@
 ---
 import type { SiteMeta } from "@/data/siteMeta";
 import { siteConfig } from "@/site-config";
+import { SOCIAL_LINKS } from "@/data/constants";
 import "../styles/global.css";
 
 type Props = SiteMeta;
@@ -11,6 +12,30 @@ const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url).href;
+const structuredData = articleDate
+  ? {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: title,
+      description,
+      datePublished: articleDate,
+      image: socialImageURL,
+      url: canonicalURL.href,
+      author: { "@type": "Person", name: siteConfig.author, url: Astro.site?.href },
+    }
+  : {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: siteConfig.title,
+      description,
+      url: canonicalURL.href,
+      author: {
+        "@type": "Person",
+        name: siteConfig.author,
+        url: Astro.site?.href,
+        sameAs: Object.values(SOCIAL_LINKS),
+      },
+    };
 ---
 
 <meta charset="utf-8" />
@@ -22,7 +47,6 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" href="/logo.png" type="image/png" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/manifest.webmanifest" />
 <link rel="canonical" href={canonicalURL} />
 
 <!-- Primary Meta Tags -->
@@ -41,6 +65,7 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 <meta property="og:site_name" content={siteConfig.title} />
 <meta property="og:locale" content={siteConfig.ogLocale} />
 <meta property="og:image" content={socialImageURL} />
+<meta property="og:image:alt" content={`Social preview for ${title}`} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 {
@@ -53,11 +78,14 @@ const socialImageURL = new URL(ogImage ? ogImage : "/social-card.png", Astro.url
 }
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={canonicalURL} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={socialImageURL} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImageURL} />
+<meta name="twitter:image:alt" content={`Social preview for ${title}`} />
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} is:inline />
 
 <!-- RSS auto-discovery -->
 <link rel="alternate" type="application/rss+xml" title={siteConfig.title} href="/rss.xml" />

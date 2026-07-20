@@ -1,6 +1,6 @@
 ---
 title: Reliable UX for AI chat with Durable Objects
-description: What is says on the tin.
+description: A simpler architecture for reliable, realtime AI chat using Durable Objects
 publishDate: "2025-01-27"
 ---
 

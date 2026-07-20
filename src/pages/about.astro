@@ -1,15 +1,67 @@
 ---
 import PageLayout from "@/layouts/Base";
+import SocialList from "@/components/SocialList";
 
 const meta = {
   title: "About",
-  description: "I'm a starter theme for Astro.build",
+  description:
+    "About Sunil Pai, a product-minded systems engineer, founder, and developer-tools builder based in London.",
 };
 ---
 
 <PageLayout meta={meta}>
-  <div class="space-y-6">
-    <h1 class="title">About</h1>
-    <p>Hi, I’m Sunil Pai.</p>
-  </div>
+  <article class="about-page">
+    <div class="grid gap-8 sm:grid-cols-[1fr_11rem] sm:items-start sm:gap-12">
+      <div>
+        <p class="eyebrow">A little context</p>
+        <h1 class="display-title mt-3">Hi, I’m Sunil.</h1>
+        <p class="mt-6 text-xl leading-8">
+          I’m a product-minded systems engineer, founder, and developer-tools builder based in
+          London.
+        </p>
+      </div>
+      <div class="aspect-square w-36 overflow-hidden rounded-[2rem] bg-black shadow-sm sm:w-44">
+        <img
+          src="/headshot-microphone.jpg"
+          width="1440"
+          height="1920"
+          alt="Sunil Pai smiling and speaking into a microphone"
+          class="h-full w-full scale-125 object-cover object-[55%_40%]"
+        />
+      </div>
+    </div>
+
+    <div class="prose prose-editorial mt-12 max-w-none">
+      <p>
+        I like turning new infrastructure primitives into products and abstractions that people
+        can understand, adopt, and build on. My work has moved between user interfaces,
+        open-source frameworks, developer platforms, stateful distributed systems, and durable
+        infrastructure for AI agents.
+      </p>
+      <p>
+        These days I’m a principal systems engineer at Cloudflare, working on agents and
+        long-running AI systems. Before that I founded <a href="https://www.partykit.io/">PartyKit</a>,
+        which Cloudflare acquired in 2024. Further back, I worked on the React core team, led
+        developer tooling for Cloudflare Workers, built social VR at Oculus, and made a fair
+        amount of web infrastructure along the way.
+      </p>
+      <p>
+        The thread through all of it is an interest in how a powerful technical idea becomes a
+        useful thing: the API, the interface, the explanation, and the bit of taste that makes it
+        cohere.
+      </p>
+      <p>
+        This site is less a record of employment and more a working notebook. I write about
+        software and systems, but also about tools, judgment, and what happens to a craft when its
+        materials change.
+      </p>
+      <p>
+        Away from computers, I like playing guitars, taking long walks, and cooking for people.
+      </p>
+    </div>
+
+    <div class="mt-12 border-t border-dotted border-divider pt-8">
+      <SocialList />
+    </div>
+  </article>
 </PageLayout>

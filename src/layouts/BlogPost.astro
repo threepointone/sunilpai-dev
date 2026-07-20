@@ -7,9 +7,11 @@ import BlogHero from "@/components/blog/Hero";
 
 interface Props {
   post: CollectionEntry<"post">;
+  newerPost?: CollectionEntry<"post"> | undefined;
+  olderPost?: CollectionEntry<"post"> | undefined;
 }
 
-const { post } = Astro.props;
+const { post, newerPost, olderPost } = Astro.props;
 const {
   data: { title, description, ogImage, publishDate },
   id,
@@ -64,10 +66,37 @@ const { headings } = await render(post);
     <article class="flex-grow break-words" data-pagefind-body>
       <div id="blog-hero"><BlogHero content={post} /></div>
       <div
-        class="prose prose-cactus mt-12 prose-headings:font-semibold prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
+        class="prose prose-editorial mt-12 prose-headings:font-semibold prose-headings:before:absolute prose-headings:before:-ms-4 prose-headings:before:text-accent prose-headings:before:content-['#'] prose-th:before:content-none"
       >
         <slot />
       </div>
+      {
+        (olderPost || newerPost) && (
+          <nav
+            class="mt-16 grid gap-4 border-t border-dotted border-divider pt-8 sm:grid-cols-2"
+            aria-label="More articles"
+          >
+            {olderPost ? (
+              <a class="group block" href={`/posts/${olderPost.id}/`} rel="prev">
+                <span class="eyebrow">← Older</span>
+                <span class="mt-2 block font-semibold leading-snug group-hover:text-link">
+                  {olderPost.data.title}
+                </span>
+              </a>
+            ) : (
+              <span />
+            )}
+            {newerPost && (
+              <a class="group block sm:text-right" href={`/posts/${newerPost.id}/`} rel="next">
+                <span class="eyebrow">Newer →</span>
+                <span class="mt-2 block font-semibold leading-snug group-hover:text-link">
+                  {newerPost.data.title}
+                </span>
+              </a>
+            )}
+          </nav>
+        )
+      }
     </article>
   </div>
   <button

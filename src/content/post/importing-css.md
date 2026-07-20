@@ -1,6 +1,6 @@
 ---
 title: The problem with importing css
-description: On implementing a client for feature flags in your UI codebase
+description: Rethinking how JavaScript projects import, load, and unload stylesheets
 publishDate: "2021-02-13"
 ---
 
