@@ -41,20 +41,36 @@ const paginationProps = {
 ---
 
 <PageLayout meta={meta}>
-  <p class="eyebrow">Everything, newest first</p>
-  <h1 class="display-title mb-8 mt-3">Writing archive</h1>
-  <div>
-    <section aria-label="Blog post list">
-      <ul class="space-y-8 text-start">
-        {
-          page.data.map((p) => (
-            <li class="flex flex-col flex-wrap gap-2 sm:flex-row [&_q]:basis-full">
-              <PostPreview post={p} as="h2" withDesc />
-            </li>
-          ))
-        }
-      </ul>
+  <header class="mb-14">
+    <p class="eyebrow">Writing</p>
+    <h1 class="display-title mt-3">The archive.</h1>
+    <p class="mt-6 max-w-[40rem] text-lg leading-8 text-muted">
+      Essays and notes about software, systems, developer tools, and the changing craft of
+      programming.
+    </p>
+  </header>
+
+  <section aria-labelledby="all-writing">
+    <div class="mb-6 flex items-baseline justify-between gap-4 border-b border-dotted border-divider pb-3">
+      <h2 id="all-writing" class="section-title">All writing</h2>
+      <p class="eyebrow shrink-0">{page.total} pieces · newest first</p>
+    </div>
+    <ul class="divide-y divide-dotted divide-divider text-start">
+      {
+        page.data.map((p) => (
+          <li class="py-5 first:pt-0">
+            <div class="flex flex-col gap-x-4 sm:flex-row sm:items-baseline">
+              <PostPreview post={p} as="h3" />
+            </div>
+            <p class="mt-2 max-w-[38rem] text-sm leading-6 text-muted sm:ms-[136px]">
+              {p.data.description}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+    <div class="mt-8 border-t border-dotted border-divider pt-4">
       <Pagination {...paginationProps} />
-    </section>
-  </div>
+    </div>
+  </section>
 </PageLayout>
