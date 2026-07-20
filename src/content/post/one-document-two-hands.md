@@ -1,110 +1,79 @@
 ---
 title: one document, two hands
-description: (the agent should be a guest in your app, not the app itself)
+description: the agent belongs beside you, not between you and the app
 publishDate: "2026-07-20"
-draft: true
 ---
 
-I built a little music app called Pizzo for a talk at Local-First Conf.
+_(this is the blog version of a talk I gave at Local-First Conf. I'll update this post with a link to the video when it's released.)_
 
-it has the normal things you'd expect from a music app: a chord progression, a tempo control, drums, bass, a synth, buttons and sliders and pads you can click. you can press play and hear the song. you can grab the controls and change it. extremely computer stuff.
+I have a little music app called [Pizzo](https://github.com/threepointone/pizzo), which I demoed during the talk.
 
-it also has an agent.
+it has the things you'd expect from a music app: a chord progression, tempo controls, drums, bass, a synth, buttons and sliders and pads you can click. you can press play, grab a control, and change the song. extremely computer stuff.
 
-you can tell it “make this dreamier in D” and the chords change. ask for a walking bass line and it adds one. ask it to take the whole thing up a step and it transposes the song.
+![Pizzo showing a song being edited through direct controls and an agent](../../assets/pizzo-one-document-two-hands.png)
 
-the important bit is what _doesn't_ happen.
+it also has an agent. you can tell it “make this dreamier in D” and the chords change. ask for a walking bass line and it adds one. ask it to take the whole thing up a step and it transposes the song.
 
-the agent does not generate a new music app. it does not produce a blob of code for you to download. it does not describe where the tempo slider is and politely ask you to move it yourself. it reaches for the same song you already have open and changes it.
+the agent doesn't generate a new music app or give you some code to download. it reaches for the same song you already have open and changes it. then you can reach back in with your hands and change it again.
 
-then you can reach back in with your hands and change it again.
+one document, two hands.
 
-one document. two hands.
+I've been using this as a way to think about agents outside coding. the agent isn't the app, and the chat isn't the thing you're working on. the agent is a guest in the app, editing the same document you are.
 
-I think this is a useful way to think about what comes after chatbots. the agent should not become the app. it should be a guest inside the app, invited to edit the same document that you already manipulate directly.
+## why coding agents got here first
 
-## why coding agents felt like magic first
+coding agents feel much more general-purpose than most other AI products. you can drop one into a repository and ask it to fix a bug, add a feature, inspect some logs, run tests, or explain why the build is doing something cursed. none of those actions had to be individually designed into a chat UI.
 
-coding agents are the first agent-shaped thing that has felt properly general-purpose to a lot of people.
+the model matters, obviously, but the model isn't working alone. coding agents usually have:
 
-you can drop one into a repository and ask it to fix a bug, add a feature, inspect some logs, run tests, or explain why the build is doing something cursed. it can move across a surprisingly large space of tasks without every possible action being designed in advance.
+- a workspace: somewhere to make things and find them again later
+- a place to run things and see what happened
+- tools that can read, write, fetch, call, and act
+- a computer, with access to the user's data and capabilities
 
-it is tempting to attribute all of this to the model getting smarter. obviously the model matters. but I don't think that is the whole trick.
+this lets them make a change, run the code, inspect the result, and try again. code is unusually convenient here because it is runnable text; the feedback loop comes with the medium.
 
-we gave coding agents four extremely useful things:
+developers are navel-gazers. we love making tools for ourselves, so coding agents got to inherit repositories, shells, editors, test suites, package managers, debuggers, and decades of work making all of them scriptable. we didn't just give the model code. we gave it the whole workshop.
 
-- a workspace: somewhere to create artifacts and read them again later
-- a place to run things: write something, execute it, see what happened
-- tools: verbs that reach outside the model to read, write, fetch, call, and act
-- a computer: CPU, memory, programs, and access to the user's data and capabilities
+outside programming, the story is much thinner. most products put a chat box in front of an existing application, or ask the model to generate an answer from scratch. few give an agent the equivalent of a coding harness around an ordinary person's actual work: a song, spreadsheet, drawing, itinerary, or document, with tools for inspecting it, operations for changing it, and a way to see what happened.
 
-that combination creates a loop:
+maybe this isn't a limitation of the models. maybe we built agents a proper workshop where developers work, then handed everyone else a text box.
 
-> act → observe → adjust
+but the output doesn't have to be code. the same setup can operate on a song, spreadsheet, canvas, map, video timeline, CAD model, etc. it needs a representation it can inspect, useful operations it can call, and some way to observe the result.
 
-the model can make a change, run the code, inspect the output, notice that it got something wrong, and try again. the repository is both the material it works on and a source of feedback about the work.
+## don't put the chat in front of the app
 
-code happened to be a spectacular substrate for this because code is runnable text. the feedback loop closed almost for free.
+the obvious way to add an agent to software is to put a chat box in front of it:
 
-but “the output is code” is not actually essential to the shape.
+> you → chat box → agent → application → your thing
 
-snip that bit off and you are left with something much more general: an agent with a workspace, capabilities, and a feedback loop, acting on a document that belongs to the user.
+the song or spreadsheet or document still exists, but now the agent is standing in the doorway. to touch the thing, you first explain yourself to an input box.
 
-that can be a codebase, sure. it can also be a song.
+I don't want the agent in front of the application. I don't particularly want it hidden behind the application either, quietly rearranging things on my behalf. I want it beside me:
 
-or a spreadsheet. or a canvas. or a map. or a video timeline. or a CAD model. whatever. the useful part is not that the agent emits code. the useful part is that it can inspect and change the thing, then observe what happened.
+> you + your agent → application → your thing
 
-## chat is not the new GUI
+in Pizzo, both of us can reach into the application's goo and mold it. the agent uses intent and tools. I use my fingers, pointer, keyboard, or MIDI controller. adding the agent gives me another way to shape the song without removing the controls I already had.
 
-there's a slightly depressing version of the AI future where every app becomes a chat box.
+this is why I'm skeptical that chat is the successor to the GUI. I wrote more broadly about this in [after WIMP](/posts/after-wimp/), but the short version is that direct manipulation is good. a spreadsheet cell, canvas shape, piano roll, or slider has a spatial obviousness that language doesn't.
 
-want to make the text bigger? ask the chat. want to move the rectangle three pixels left? ask the chat. want to inspect the formula in this cell? ask the chat. want to hear the next chord? write a tiny letter to the computer and wait for it to reply.
+chat is useful when I know the outcome but not the exact moves. direct manipulation is useful when I know the move. in Pizzo I can drag the tempo slider because my hand is already there, then ask the agent to make the progression “more wistful” because that is easier to say than choosing four replacement chords.
 
-my brother in christ, we already invented direct manipulation.
+there's no reason those inputs should live in different applications.
 
-the WIMP era—windows, icons, menus, pointer—was not a historical accident that we need to wash away with a sufficiently large model. graphical interfaces gave us stable, visual, learnable systems. they let us mold software with our hands. a spreadsheet cell, a canvas shape, a piano roll, and a slider all have a spatial obviousness that language often doesn't.
+## keep the work in the document
 
-chat-only interaction throws a lot of that away. it takes software that you could touch and turns it back into a command line, except the command line is nondeterministic and types “absolutely!” before doing anything.
+a lot of current AI software accidentally makes the conversation the source of truth. you ask for a thing, the model emits a result, you ask for a revision, and it emits the whole thing again. after a while the state is smeared across a transcript and has to be reconstructed whenever anything wants to use it.
 
-the mistake is assuming we have to choose.
+Pizzo keeps the song as ordinary application state. the UI reads it, the audio engine plays it, direct controls modify it, and agent tools modify it. chat is one input surface over the song, not the container holding the song.
 
-direct manipulation is good when you know the move you want to make. intent is good when you know the outcome you want but not the exact series of moves. those are complementary inputs.
-
-in Pizzo I can drag the tempo slider because my hand is already there and I know exactly what I want. then I can ask the agent to make the progression “more wistful” because that is easier to express as intent than as four precisely chosen replacement chords.
-
-both should edit the same thing.
-
-## the document is the interface
-
-the old application contract looked roughly like this:
-
-> you → fixed GUI → preset actions
-
-the product team decided which actions existed, built controls for them, and shipped that finite surface to the user. if the button didn't exist, neither did the capability (unless you were one of the people allowed to program the machine).
-
-the new contract can look more like:
-
-> you + your agent → intent → your document → result / UI / action
-
-this doesn't mean the GUI disappears. it means the GUI stops being the whole app.
-
-the document becomes the durable center of the system. the interface is one way to read and modify it. the agent is another. maybe there are several interfaces: a desktop editor, a phone, a controller, a MIDI keyboard, a voice surface, whatever. they are all projections over and inputs into the same underlying thing.
-
-this distinction matters because otherwise we accidentally make the chat transcript the source of truth.
-
-you see this in a lot of current AI software. the work lives somewhere inside a conversation. the user asks for a thing, the model emits a result, the user asks for a revision, the model emits the whole thing again. state is implicit, smeared across messages, and increasingly expensive to reconstruct. if you want to edit something directly, good luck; you are now negotiating with a transcript.
+that also makes it possible to have several surfaces over the same work: a desktop editor, phone, MIDI controller, voice interface, whatever. they don't need to agree on a UI. they only need to agree on the document and its operations.
 
 the chat should not own the song. the song should own the song.
 
-the agent is a guest in that document. invited to edit, never to own.
+## let boring code do the precise bits
 
-## the model should steer the machine, not impersonate it
-
-there is another important detail in Pizzo: the model is not secretly doing music theory by vibes.
-
-when I ask it to transpose the song, a deterministic function transposes the song. when I ask for richer chords, a music theory library does the actual transformation. when I ask for a bass line, the app's bass-line operation produces state that the sequencer knows how to play.
-
-the model's job is to translate fuzzy human intent into precise operations.
+the model in Pizzo isn't secretly doing music theory by vibes. when I ask it to transpose the song, a deterministic function does the transposition. when I ask for richer chords, a music theory library does that transformation. the model mostly turns fuzzy intent into an operation and its arguments.
 
 roughly:
 
@@ -131,63 +100,42 @@ const operations = {
 };
 ```
 
-the button calls `transpose(2)`. the agent can call `transpose(2)`. the important thing is that there aren't two implementations of transposition, one “normal” and one “AI.” there is one operation on one document.
+the button calls `transpose(2)`. the agent can call `transpose(2)`. there isn't a normal implementation and an AI implementation.
 
-this gives the system a hard, testable core. the model chooses an operation and arguments; ordinary software applies them. you can validate the arguments, enforce permissions, record the change, undo it, sync it, test it, and show it in the UI.
+this keeps the important part of the application boring and testable. arguments can be validated, permissions enforced, changes recorded and undone. the model decides which control to reach for; ordinary software applies the change.
 
-the model steers. the application does the work.
+## what gets synced
 
-(this is also a much healthier relationship with probabilistic software than asking a model to hallucinate an entire valid state object on every turn and hoping it remembered all the fields.)
+if the document is shared by the user and the agent, they need to see each other's changes. reconnecting should load the current song, not replay a conversation in an attempt to reconstruct it.
 
-## sync is the spine
+the version of Pizzo I showed at Local-First Conf associates each song with a Durable Object. the browser renders and manipulates the song, while the Durable Object gives it a durable, addressable home and somewhere for the agent to join. direct controls and agent tools use the same operations, and changes are sent to the other connected surfaces.
 
-once the document is the center, sync stops being an add-on and becomes the spine of the application.
+putting state in a nearby Durable Object does not automatically make an application local-first in the strict sense. if every edit needs a server round-trip, it is still a server-backed app, however fast the server is. a stronger implementation would keep a durable local replica, accept offline edits, and reconcile them later.
 
-your hand changes the document and the agent should see it. the agent changes the document and every open interface should see it. reconnecting should not require reconstructing reality from the chat history. the current state of the document is reality.
+what I want to preserve is the useful part of the local-first contract: the document belongs to the user, direct edits feel immediate, the application remains useful without the agent, and sync helps the document move between surfaces. the agent joins that arrangement as another client. it doesn't become the owner just because it runs somewhere else.
 
-in the version I showed at Local-First Conf, the song is associated with a Durable Object. the browser renders and manipulates it, while the Durable Object gives the document a durable, addressable home and a place where an agent can join it. direct input and agent tools converge on the same set of operations; updates fan out to the connected surfaces.
+## why Think is serverless
 
-there is an important bit of precision here: putting state in a nearby Durable Object does not, by itself, make an application local-first in the strongest technical sense. if every edit requires a server round-trip, you have built a fast server-backed app, not a local-first one. a fully local-first implementation also needs a durable local replica, offline edits, and a reconciliation story.
+the infrastructure math changes once this is for everyone, not just developers.
 
-the value I care about here is the local-first contract:
+depending on how you count, there are perhaps 40 or 50 million software developers. coding agents give some fraction of them a workspace, tools, a sandbox, and compute. once the same idea applies to ordinary software, the possible audience becomes hundreds of millions or a billion people. those people may have several agents or documents each.
 
-- the user's document is the source of truth, not the model's transcript
-- direct edits happen at the user's hands and should feel immediate
-- the application remains useful without asking the agent for permission
-- sync connects surfaces and collaborators; it does not redefine ownership
-- the agent joins the document as another client
+giving each one a permanently running server or container would be wasteful. agents also don't fit neatly into an interactive web session. an agent may be waiting for an event, waking up on a schedule, continuing a job, or doing something while its user is away. closing the browser shouldn't destroy it, but “still exists” shouldn't have to mean “keeps a container running all night.”
 
-you can implement that contract at different levels of local-first-ness. the strongest version keeps a durable copy on the user's device and syncs when it can. a simpler version can start with optimistic local state plus durable persistence and fan-out. but the direction matters: the network helps the user's document travel; it does not turn the user into a thin client for the agent.
+this is why I'm building [Project Think](https://developers.cloudflare.com/agents/harnesses/think/) as a serverless harness. it provides the workspace, tools, sandboxed execution, state, and feedback loop without asking developers to maintain an always-on server for every agent.
+
+the agent stays addressable, but it doesn't have to keep burning CPU. it can retain an identity and state, sleep when nothing is happening, then wake up for a message or an alarm. Workers supply compute when it has work to do; a Durable Object supplies the addressable stateful part that survives between invocations.
+
+to the application, it still looks like a small computer belonging to a person or document. but there isn't a container sitting idle because that person went to lunch.
+
+I'm not pretending those numbers are a forecast. the point is that moving from “developers get harnesses” to “users get harnesses” changes the unit of infrastructure. the serverless part is what makes that unit affordable to hand out freely.
 
 ## the harness is the app
 
-people use “agent harness” to describe the stuff wrapped around a model: workspace, tools, memory, sandbox, permissions, the execution loop, all of that.
+“agent harness” usually means the machinery around a model: workspace, tools, memory, sandbox, permissions, and the execution loop. coding harnesses look like developer environments because their document is a codebase.
 
-for coding agents, the harness looks like a developer environment because the document is a codebase.
+Pizzo wraps that machinery around a song. a spreadsheet could wrap it around cells and formulas; a canvas around shapes and layers. the UI remains a normal application, but the app's state and operations can be read and changed by the agent as well as its human user.
 
-for everyone else, the harness can just look like the application.
+that's really all I mean by “the harness is the app.” not that every interface should become a chat window, or that the model should generate the application again on every turn. the application already has the document, controls, deterministic logic, history, persistence, and sync. those are exactly the things an agent needs around it.
 
-a spreadsheet is a harness around a grid: cells, formulas, recalculation, selection, history, persistence. give an agent tools to inspect and modify that grid and it can fill the column beside your cursor without replacing the spreadsheet with chat.
-
-a canvas is a harness around shapes and layers. give the agent the same move, resize, group, align, and style operations used by the pointer and it can act on the canvas you already understand.
-
-a music app is a harness around a song: notes, chords, instruments, time, playback, transformations. your fingers and the agent can play the same instrument.
-
-the pattern is the same:
-
-1. a document the user owns
-2. direct manipulation that remains fully useful
-3. a deterministic set of operations over the document
-4. an agent that translates intent into those operations
-5. a feedback loop so the agent can observe and adjust
-6. sync and persistence that keep every surface honest
-
-this is why I don't think the future is “every app gets a chatbot.” chat can be one useful input surface, especially for intent, explanation, and ambiguity. but the larger opportunity is to make applications inhabitable by agents without surrendering them to agents.
-
-the magic of coding agents was never exclusively about code. it was what happened when we gave a model a workspace, tools, a loop, and a computer.
-
-now give it access to everyone else's documents.
-
-not as the owner. as a guest.
-
-one document. two hands.
+let it use them, beside the user.

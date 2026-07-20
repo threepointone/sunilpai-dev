@@ -45,16 +45,15 @@ const { headings } = await render(post);
     {
       !!headings.length && (
         <aside class="sticky top-20 order-2 -me-32 hidden basis-64 lg:block">
-          <h2 class="font-semibold">Table of Contents</h2>
-          <ul class="mt-4 text-xs">
+          <h2 class="eyebrow">On this page</h2>
+          <ul class="mt-4 border-s border-divider">
             {headings.map(({ depth, slug, text }) => (
-              <li class="line-clamp-2 hover:text-accent">
+              <li class="line-clamp-2">
                 <a
-                  class={`block ${depth <= 2 ? "mt-3" : "mt-2 ps-3 text-[0.6875rem]"}`}
+                  class={`-ms-px block border-s border-transparent py-1.5 transition-colors hover:border-accent hover:text-accent ${depth <= 2 ? "ps-4 text-xs font-medium" : "ps-7 text-[0.6875rem] text-muted"}`}
                   href={`#${slug}`}
                   aria-label={`Scroll to section: ${text}`}
                 >
-                  <span class="me-1">{"#".repeat(depth)}</span>
                   {text}
                 </a>
               </li>
