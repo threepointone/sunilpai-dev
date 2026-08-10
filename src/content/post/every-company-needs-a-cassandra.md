@@ -4,6 +4,10 @@ description: an ai agent for the socially expensive work of organizational disse
 publishDate: "2026-08-09"
 ---
 
+<img width="4096" height="2696" alt="cassandra" src="https://github.com/user-attachments/assets/007e277f-d2a7-4bdc-9346-c1ef63fe4bbb" />
+
+
+
 every company has had this person. they're... annoying. when everyone is excited about something, they'll tell you why it won't work. when someone drops a competitor's launch into slack and everyone starts making fun of it, they'll point out the thing the competitor is actually doing well. and ffs, the annoying part is that they're often right.
 
 I've worked with a few people like this. sometimes I've been this person. they can sound like pessimists, but mostly they're willing to say something everyone else would rather not hear.
