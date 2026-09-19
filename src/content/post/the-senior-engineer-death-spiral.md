@@ -8,6 +8,8 @@ _(a friend recently got a new job, a very senior role, very well paid, and prett
 
 ---
 
+![A hand-drawn grid spiraling into a dense knot, with one loose line escaping to the edge.](../../assets/senior-engineer-death-spiral.png)
+
 okay, so this is the most common failure mode I've seen. I call it the senior engineer death spiral. it usually happens when an engineer goes into a new job, gets a promotion, or even just gets a big project at work. or they ask for a big project because they think to themselves, "oh, if I work harder, do a bigger thing, then I will be rewarded with promotions and what have you," right? like, that's the move. and the thing they do is they tell themselves they need to almost cosplay being a more senior engineer than they are. they're like, "oh, you know what, I'm going to try designing something way more ambitious."
 
 and what happens is they start disappearing for longer periods of time. like, for two, three weeks, you won't hear anything from them. occasionally, during the standup, they'll give what I call the positive update. "yeah, things are going well, you guys. I'll have something to show you quite soon. if you have any questions, reach out." and no one usually reaches out, but they won't really have anything to show.
