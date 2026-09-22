@@ -5,9 +5,10 @@ import PostPreview from "@/components/blog/PostPreview";
 import SocialList from "@/components/SocialList";
 import { publishedPosts, sortMDByDate } from "@/utils";
 
-const MAX_POSTS = 6;
+const MAX_POSTS = 100;
 const allPosts = await getCollection("post");
-const allPostsByDate = sortMDByDate(publishedPosts(allPosts)).slice(0, MAX_POSTS);
+const allPostsByDate = sortMDByDate(publishedPosts(allPosts));
+const recentPosts = allPostsByDate.slice(0, MAX_POSTS);
 ---
 
 <PageLayout
@@ -31,16 +32,21 @@ const allPostsByDate = sortMDByDate(publishedPosts(allPosts)).slice(0, MAX_POSTS
         like while it is changing beneath us.
       </p>
     </div>
+    <div class="mt-6">
+      <SocialList />
+    </div>
   </section>
 
   <section class="mt-20" aria-labelledby="recent-writing">
     <div class="mb-6 flex items-baseline justify-between gap-4 border-b border-dotted border-divider pb-3">
       <h2 id="recent-writing" class="section-title">Recent writing</h2>
-      <a class="quiet-link shrink-0" href="/posts/">Full archive →</a>
+      {allPostsByDate.length > MAX_POSTS && (
+        <a class="quiet-link shrink-0" href="/posts/">Older posts →</a>
+      )}
     </div>
     <ul class="divide-y divide-dotted divide-divider">
       {
-        allPostsByDate.map((p) => (
+        recentPosts.map((p) => (
           <li class="py-5 first:pt-0">
             <div class="flex flex-col gap-x-4 sm:flex-row sm:items-baseline">
               <PostPreview post={p} />
@@ -52,9 +58,5 @@ const allPostsByDate = sortMDByDate(publishedPosts(allPosts)).slice(0, MAX_POSTS
         ))
       }
     </ul>
-  </section>
-
-  <section class="mt-16 border-t border-dotted border-divider pt-8">
-    <SocialList />
   </section>
 </PageLayout>
