@@ -6,7 +6,7 @@ publishDate: "2026-10-08"
 
 ![dad](../../assets/dad.png)
 
-if you know me in person, you know that one of the bits I like to do is, whenever I do something nice for someone, I’ll say, “oh, it’s because I’m collecting favors. I like having people owe me”, usually with a wicked smile and a very poor godfather impression ("one of these days..."). it’s a good joke because it makes people comfortable. if I do something nice for you and then make this obviously ridiculous claim that someday I’m going to cash it in, you don’t have to sit there feeling like you owe me something. we can just laugh about it.
+if you know me in person, you know that one of the bits I like to do is, whenever I do something nice for someone, I’ll say, “oh, it’s because I’m collecting favours. I like having people owe me”, usually with a wicked smile and a very poor godfather impression ("one of these days..."). it’s a good joke because it makes people comfortable. if I do something nice for you and then make this obviously ridiculous claim that someday I’m going to cash it in, you don’t have to sit there feeling like you owe me something. we can just laugh about it.
 
 been thinking about where that actually comes from.
 
@@ -30,7 +30,7 @@ this is something, by the way, that I think people in hospitality are incredibly
 
 I think I’ve approached technology this way for a long time. twitter too, actually. friendships. work. a lot of things. and the funny thing is that all this goodwill compounds in completely ridiculous ways.
 
-which is where the joke about collecting favors gets funny again, because I don’t actually keep track of any of this shit. I couldn’t tell you who owes me a favor. that would be insane. you just help people, and then ten years later something happens and all these relationships that you didn’t even realise you were building suddenly become visible.
+which is where the joke about collecting favours gets funny again, because I don’t actually keep track of any of this shit. I couldn’t tell you who owes me a favor. that would be insane. you just help people, and then ten years later something happens and all these relationships that you didn’t even realise you were building suddenly become visible.
 
 there are two examples I think about a lot. in 2021, when the Delta wave of COVID was going through India, it was fucking horrible. people were dying everywhere, and I was sitting in the UK, where we had already started talking about summer plans because vaccines were arriving, and I had this enormous amount of survivor’s guilt.
 
