@@ -4,6 +4,10 @@ description: thinking for yourself is a terrible business model.
 publishDate: "2026-10-12"
 ---
 
+[tw: meta bullshit]
+
+![original ideas](../../assets/original-ideas.png)
+
 an original thought is such a fucking pain in the ass.
 
 so I wasn't even trying, bro. I was just listening to music, daydreaming, and it just shows up. no references, no nothing. I can't even tell if it's a good thought, or just a bad idea, or even something incredibly stupid. and now I have to spend days trying to understand what it's saying, what it's thinking, what its shape is, how to fit it in my head.
